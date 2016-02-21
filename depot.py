@@ -1,25 +1,25 @@
 # Method for stock depot - simulator
 import ystockquote
 
-# method for getting stock price via ystockquote:
-def getStockPrice(stock):
-    allInfo = ystockquote.get_all(stock)
-    return allInfo["price"]
+class Depot(object):
 
-# method for getting historical stock price:
+    def __init__(self, total, stocks):
+        self.total = total
+        self.stocks = stocks
 
-def getStockHistory(stock, start, end):
-    allInfo = ystockquote.get_historical_prices(stock, start, end)
-    return allInfo
+    # method for getting stock price via ystockquote:
+    def getStockPrice(self):
+        allInfo = ystockquote.get_all(self.stocks)
+        return allInfo["price"]
 
-
-total = 1000 # available money in depot
-
-stocks = ['TSLA']
-
-
-price = getStockHistory(stocks[0], '2010-01-01', '2016-02-01')
-
-print price
+    # method for getting historical stock price:
+    def getStockHistory(self, start, end):
+        allInfo = ystockquote.get_historical_prices(self.stocks, start, end)
+        return allInfo
 
 
+money = 1000 # available money in depot
+stocks = ['TSLA'] # available stocks
+trialDepot = Depot(money, stocks)
+
+print trialDepot.getStockPrice()
