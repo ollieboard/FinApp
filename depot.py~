@@ -12,7 +12,7 @@ class Depot(object):
 	# method for getting stock price via ystockquote:
     def getStockPrice(self, name):
         allInfo = ystockquote.get_all(name)
-        return float(allInfo["price"])
+        return allInfo["price"]
 
     # method for getting historical stock price:
     def getStockHistory(self, name, start, end):
@@ -28,21 +28,23 @@ class Depot(object):
         pass
 
     # method for calculating worth of depot:
-    def depotWorth(self):
-	tot = 0
-	for i in self.stocks:
-	    price = self.getStockPrice(i.name)
-	    tot += price * i.amount
-	return tot
+	def depotWorth(self):
+		tot = 0
+		for i in self.stocks:
+			price = getStockPrice(i.name)
+			tot += price * i.amount
+		return tot
     
 
 money = 1000 # available money in depot
 stockTSLA = stock.Stock('TSLA', 150, 10)
-stockAIRB = stock.Stock('AIR.DE', 50, 2)
+stockAIRB = stock.Stock('AIRB', 50, 2)
 stocks = [stockTSLA, stockAIRB] # available stocks
 trialDepot = Depot(money, stocks, 5)
 
+print trialDepot.getStockPrice('TSLA')
+
 for i in stocks:
-    print i
+	print i
 
 print trialDepot.depotWorth()
