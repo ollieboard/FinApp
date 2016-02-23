@@ -3,25 +3,17 @@ import depot
 import stock
 import stockMath
 import matplotlib.pyplot as plt
+import datetime as dt
+import matplotlib.dates as mdates
 
 money = 1000
-stockTSLA = stock.Stock('TSLA', 150, 10)
-stockAIRB = stock.Stock('AIR.DE', 50, 2)
-stocks = [stockTSLA, stockAIRB]
-trialDepot = depot.Depot(money, stocks, 5)
+test = stock.Stock('PAH3.DE')
+boughtTesla = stock.BoughtStock('TSLA', 10)
 
-for i in stocks:
-    print i
+print boughtTesla
 
-print trialDepot.depotWorth()
-
-history = stocks[0].getStockHistory('2015-12-12', '2016-02-20')
-
-print type(history)
-historyList = []
-#for i in history:
-#    historyList.append(i['close'])
-
-#plt.plot(historyList)
-#plt.ylabel('stock prices ($)')
-#plt.show()
+test.plotHistory('2005-01-01', '2016-02-23')
+plt.hold(True)
+test.plotExpAverage('2005-01-01', '2016-02-23', 50)
+test.plotExpAverage('2005-01-01', '2016-02-23', 15)
+plt.show()
