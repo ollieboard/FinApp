@@ -1,2 +1,5 @@
 # Python compiled bytecode #
 *.pyc
+
+# file with tilde #
+*~
